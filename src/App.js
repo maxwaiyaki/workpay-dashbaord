@@ -9,7 +9,7 @@ import theme from 'utils/theme';
 import './App.css';
 
 const Sidebar = lazy(() =>
-	import(/* webpackChunkName: "Sidebar" */ 'components/Sidebar'),
+	import(/* webpackChunkName: "Sidebar" */ 'containers/Sidebar'),
 );
 
 function App() {
