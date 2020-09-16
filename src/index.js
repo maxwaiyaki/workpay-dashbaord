@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import FontFaceObserver from 'fontfaceobserver';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import App from 'containers/App';
+import * as serviceWorker from './containers/serviceWorker';
 
 const robotoObserver300 = new FontFaceObserver('Roboto', { weight: 300 });
 const robotoObserver400 = new FontFaceObserver('Roboto', { weight: 400 });
