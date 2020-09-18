@@ -11,6 +11,11 @@ export const theme = createMuiTheme({
 					textDecoration: 'none',
 					cursor: 'pointer',
 				},
+				ul: {
+					margin: '0px',
+					listStyle: 'none',
+					padding: '0px',
+				},
 			},
 		},
 	},

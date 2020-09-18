@@ -5,6 +5,7 @@ import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
 
 import List from 'components/List';
+import Routes from 'containers/Routes';
 
 const data = {
 	name: 'Africom Incorporated',
@@ -28,7 +29,7 @@ export default function Sidebar() {
 				minWidth={294}
 				display='flex'
 				flexDirection='column'
-				bgcolor='white'
+				bgcolor='background.paper'
 				position='fixed'
 				component='aside'
 				overflow='hidden auto'
@@ -42,7 +43,7 @@ export default function Sidebar() {
 						m='0'
 						component='h4'
 						fontSize={12}
-						color='black'
+						color='common.black'
 						fontWeight='fontWeightMedium'
 					>
 						powered by WorkPay
@@ -100,7 +101,7 @@ export default function Sidebar() {
 				</Box>
 			</Box>
 			<Box component='main' flex='auto' marginLeft='294px' bgcolor='gray.50'>
-				Maxwell
+				<Routes />
 			</Box>
 		</Box>
 	);

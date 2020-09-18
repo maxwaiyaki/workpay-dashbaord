@@ -34,17 +34,10 @@ const useItemStyles = makeStyles(() => ({
 	},
 }));
 
-const useItemTextStyles = makeStyles(() => ({
-	root: {
-		fontWeight: '500',
-	},
-}));
-
 export default function List({ items }) {
 	const listSubClasses = useListStyles();
 	const listItemClasses = useItemStyles();
 	const listItemIconClasses = useIconStyles();
-	const listItemTextClasses = useItemTextStyles();
 	return (
 		<Box px={4} pb={2} fontWeight='500'>
 			<MUIList
@@ -89,5 +82,5 @@ List.defaultProps = {
 };
 
 List.propTypes = {
-	items: PropTypes.string,
+	items: PropTypes.number,
 };
