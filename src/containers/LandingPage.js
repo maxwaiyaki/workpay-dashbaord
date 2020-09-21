@@ -169,13 +169,7 @@ export default function LandingPage() {
 							Welcome to Workpay
 						</Box>
 						{data.welcomeText.map((item, i) => (
-							<Box
-								component='p'
-								fontSize='13.2px'
-								// fontWeight='fontWeightMedium'
-								color='gray.900'
-								key={i}
-							>
+							<Box component='p' fontSize='13.2px' color='gray.900' key={i}>
 								{item}
 							</Box>
 						))}

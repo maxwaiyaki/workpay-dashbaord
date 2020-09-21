@@ -37,6 +37,7 @@ export const theme = createMuiTheme({
 			700: '#707070',
 			800: '#6f6f6f',
 			900: '#505050',
+			1000: '#F0F0F0', // still light-ish gray
 		},
 	},
 });

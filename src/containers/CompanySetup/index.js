@@ -9,6 +9,7 @@ import Tab from '@material-ui/core/Tab';
 import TabPanel from 'components/TabPanel';
 
 import { getDate, getDay, getMonth } from 'utils/moments';
+import Setup from './Setup';
 
 const data = {
 	subHeading:
@@ -100,7 +101,7 @@ export default function CompanySetup() {
 					</SetupTabs>
 				</Box>
 				<TabPanel value={value} index={0}>
-					Company Setup
+					<Setup />
 				</TabPanel>
 				<TabPanel value={value} index={1}>
 					Users
