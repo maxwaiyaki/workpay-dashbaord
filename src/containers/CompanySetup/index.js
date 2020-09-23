@@ -10,6 +10,7 @@ import TabPanel from 'components/TabPanel';
 
 import { getDate, getDay, getMonth } from 'utils/moments';
 import Setup from './Setup';
+import Users from './Users';
 
 const data = {
 	subHeading:
@@ -26,7 +27,7 @@ const SetupTabs = withStyles({
 	},
 	indicator: {
 		backgroundColor: '#0B3B0B',
-		height: '2.5px',
+		height: '2px',
 		zIndex: '1',
 	},
 })(Tabs);
@@ -58,7 +59,7 @@ export default function CompanySetup() {
 
 	return (
 		<Container>
-			<Box component='section' paddingTop={6} pl={5} pr={16}>
+			<Box component='section' py={6} pl={5} pr={16}>
 				<Box
 					component='header'
 					fontSize='20px'
@@ -100,11 +101,11 @@ export default function CompanySetup() {
 						<SetupTab label='Package & Settings' />
 					</SetupTabs>
 				</Box>
-				<TabPanel value={value} index={0}>
+				<TabPanel value={value} index={1}>
 					<Setup />
 				</TabPanel>
-				<TabPanel value={value} index={1}>
-					Users
+				<TabPanel value={value} index={0}>
+					<Users />
 				</TabPanel>
 				<TabPanel value={value} index={2}>
 					Packages & Settings
