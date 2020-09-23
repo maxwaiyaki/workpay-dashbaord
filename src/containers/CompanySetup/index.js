@@ -101,10 +101,10 @@ export default function CompanySetup() {
 						<SetupTab label='Package & Settings' />
 					</SetupTabs>
 				</Box>
-				<TabPanel value={value} index={1}>
+				<TabPanel value={value} index={0}>
 					<Setup />
 				</TabPanel>
-				<TabPanel value={value} index={0}>
+				<TabPanel value={value} index={1}>
 					<Users />
 				</TabPanel>
 				<TabPanel value={value} index={2}>

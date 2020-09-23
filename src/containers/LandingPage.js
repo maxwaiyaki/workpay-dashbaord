@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Container from '@material-ui/core/Container';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -25,6 +26,7 @@ const data = {
 			id: 'setCompany',
 			step: 'Set your company',
 			isComplete: false,
+			to: '/company-setup',
 		},
 		{
 			id: 'setPayRoll',
@@ -79,6 +81,10 @@ const RunPayroll = withStyles({
 
 export default function LandingPage() {
 	const dateTime = useDateTime();
+	const history = useHistory();
+	function handleRoute(route) {
+		history.push(route);
+	}
 	return (
 		<Container>
 			<Box component='section' paddingTop={6} pl={5} pr={16}>
@@ -103,6 +109,7 @@ export default function LandingPage() {
 						{data.steps.map((item, i) => (
 							<Box
 								key={item.id}
+								onClick={() => handleRoute(item.to)}
 								padding='12px 16px'
 								component='li'
 								border={1}
@@ -114,7 +121,7 @@ export default function LandingPage() {
 								bgcolor='background.paper'
 								boxShadow='0px 3px 6px #9D9D9D29'
 								style={{
-									cursor: `${item.isActive === false ? 'default' : 'pointer'}`,
+									cursor: `${item.isComplete ? 'default' : 'pointer'}`,
 								}}
 							>
 								<GreenCheckbox
