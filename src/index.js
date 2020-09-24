@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import FontFaceObserver from 'fontfaceobserver';
-import App from 'containers/App';
+// import App from 'containers/App';
 import * as serviceWorker from './containers/serviceWorker';
 
 const robotoObserver300 = new FontFaceObserver('Roboto', { weight: 300 });
@@ -19,12 +19,22 @@ Promise.all([
 	document.body.classList.add('fontLoaded');
 });
 
-ReactDOM.render(
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>,
-	document.getElementById('root'),
-);
+const render = () => {
+	// eslint-disable-next-line global-require
+	const App = require('./containers/App').default;
+	ReactDOM.render(
+		<React.StrictMode>
+			<App />
+		</React.StrictMode>,
+		document.getElementById('root'),
+	);
+};
+
+render();
+
+if (process.env.NODE_ENV === 'development' && module.hot) {
+	module.hot.accept('./containers/App', render);
+}
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
