@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import MUIModal from '@material-ui/core/Modal';
 import Box from '@material-ui/core/Box';
 
-export default function Modal({ isOpen, onClose, width }) {
+export default function Modal({ isOpen, onClose, width, ...rest }) {
 	return (
 		<MUIModal
 			open={isOpen}
@@ -13,14 +13,15 @@ export default function Modal({ isOpen, onClose, width }) {
 			aria-describedby='simple-modal-description'
 		>
 			<Box
+				{...rest}
+				mx='auto'
 				top='50%'
 				left='50%'
-				style={{ transform: 'translate(-50%, -50%)' }}
-				position='absolute'
-				mx='auto'
 				width={width}
+				position='absolute'
+				padding='16px 32px 24px'
 				bgcolor='background.paper'
-				padding={(2, 4, 3)}
+				style={{ transform: 'translate(-50%, -50%)' }}
 			/>
 		</MUIModal>
 	);
