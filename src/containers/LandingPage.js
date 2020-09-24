@@ -7,7 +7,6 @@ import Box from '@material-ui/core/Box';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-import { theme } from 'utils/theme';
 import { useDateTime } from 'utils/hooks';
 import { getDate, getDay, getMonth } from 'utils/moments';
 import ChevronRight from 'assets/icons/ChevronRight';
@@ -57,7 +56,7 @@ const day = getDay(new Date());
 const date = getDate(new Date());
 const month = getMonth(new Date());
 
-const GreenCheckbox = withStyles({
+const GreenCheckbox = withStyles((theme) => ({
 	root: {
 		color: theme.palette.gray[400],
 		'&$checked': {
@@ -70,7 +69,7 @@ const GreenCheckbox = withStyles({
 		// width: '48px',
 	},
 	checked: {},
-})((props) => <Checkbox disableRipple disabled color='default' {...props} />);
+}))((props) => <Checkbox disableRipple disabled color='default' {...props} />);
 
 const RunPayroll = withStyles({
 	root: {

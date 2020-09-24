@@ -22,6 +22,7 @@ export const theme = createMuiTheme({
 	palette: {
 		green: {
 			50: '#E7F5E7',
+			100: '#D9F5D9',
 			400: '#48A548',
 			500: '#48A648',
 			900: '#0B3B0B',
@@ -41,6 +42,8 @@ export const theme = createMuiTheme({
 			1000: '#F0F0F0', // still light-ish gray
 			1100: '#F8F8F8', // still light-ish gray
 			1200: '#777676', // still light-ish gray
+
+			1300: '#6E6E6E', // some dark gray
 		},
 	},
 });
