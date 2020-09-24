@@ -6,15 +6,18 @@ import MUITableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import MUITableRow from '@material-ui/core/TableRow';
-// import TableSortLabel from '@material-ui/core/TableSortLabel';
-// import TablePagination from '@material-ui/core/TablePagination';
-// import Toolbar from '@material-ui/core/Toolbar';
+
 import { withStyles } from '@material-ui/core/styles';
 import MUIButton from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import MUICheckbox from '@material-ui/core/Checkbox';
 
 import DotMenu from 'assets/icons/DotMenu';
+import { useDisclosure } from 'utils/hooks';
+
+const Modal = React.lazy(() =>
+	import(/* webpackChunkName: "Modal" */ 'components/Modal'),
+);
 
 const headCells = [
 	{
@@ -105,9 +108,6 @@ const Checkbox = withStyles(({ palette }) => ({
 		},
 	},
 	checked: {},
-	icon: {
-		borderRadius: '60px',
-	},
 }))((props) => <MUICheckbox disableRipple {...props} />);
 
 // const Button = withStyles((theme) => ({
@@ -124,6 +124,8 @@ const Checkbox = withStyles(({ palette }) => ({
 
 export default function Users() {
 	const [selected, setSelected] = React.useState([]);
+
+	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	const handleSelectAllClick = (event) => {
 		if (event.target.checked) {
@@ -156,82 +158,87 @@ export default function Users() {
 	const isSelected = (name) => selected.indexOf(name) !== -1;
 
 	return (
-		<TableContainer>
-			<Table stickyHeader>
-				<TableHead>
-					<TableRow>
-						<TableCell padding='checkbox'>
-							<Checkbox
-								indeterminate={
-									selected.length > 0 && selected.length < rows.length
-								}
-								checked={rows.length > 0 && selected.length === rows.length}
-								onChange={handleSelectAllClick}
-								inputProps={{ 'aria-label': 'select all employees' }}
-							/>
-						</TableCell>
-						{headCells.map((cell, i) => (
-							<TableCell
-								padding={i === 0 ? 'none' : 'default'}
-								align='center'
-								key={cell.id}
-							>
-								{cell.label}
-							</TableCell>
-						))}
-						<TableCell align='center'>
-							<Button variant='contained' disableElevation>
-								Add User
-							</Button>
-						</TableCell>
-					</TableRow>
-				</TableHead>
-				<TableBody>
-					{rows.map((row) => {
-						const isItemSelected = isSelected(row.name);
-						const labelId = `users-table-checkbox-${row.employeeNo}`;
-						return (
-							<TableRow
-								key={row.employeeNo}
-								aria-checked={isItemSelected}
-								tabIndex={-1}
-								selected={isItemSelected}
-							>
+		<React.Suspense fallback={<div>{null}</div>}>
+			<>
+				<Modal isOpen={isOpen} onClose={onClose} />
+				<TableContainer>
+					<Table stickyHeader>
+						<TableHead>
+							<TableRow>
 								<TableCell padding='checkbox'>
 									<Checkbox
-										checked={isItemSelected}
-										onChange={(event) => handleClick(event, row.name)}
-										inputProps={{ 'aria-labelledby': labelId }}
+										indeterminate={
+											selected.length > 0 && selected.length < rows.length
+										}
+										checked={rows.length > 0 && selected.length === rows.length}
+										onChange={handleSelectAllClick}
+										inputProps={{ 'aria-label': 'select all employees' }}
 									/>
 								</TableCell>
-								<TableCell padding='none' align='center'>
-									{row.employeeNo}
-								</TableCell>
-								<TableCell align='center' scope='row'>
-									{row.name}
-								</TableCell>
-								<TableCell align='center'>{row.phoneNo}</TableCell>
-								<TableCell align='center'>{row.role}</TableCell>
-								<TableCell align='center'>
-									<Box
-										borderRadius='20px'
-										bgcolor={isItemSelected ? 'white' : 'green.100'}
-										fontSize='13px'
-										padding='4px'
-										fontWeight='fontWeightMedium'
-										color='green.900'
+								{headCells.map((cell, i) => (
+									<TableCell
+										padding={i === 0 ? 'none' : 'default'}
+										align='center'
+										key={cell.id}
 									>
-										{row.status}
-									</Box>
-								</TableCell>
+										{cell.label}
+									</TableCell>
+								))}
 								<TableCell align='center'>
-									<DotMenu fontSize='small' />
+									<Button variant='contained' disableElevation onClick={onOpen}>
+										Add User
+									</Button>
 								</TableCell>
 							</TableRow>
-						);
-					})}
-				</TableBody>
-			</Table>
-		</TableContainer>
+						</TableHead>
+						<TableBody>
+							{rows.map((row) => {
+								const isItemSelected = isSelected(row.name);
+								const labelId = `users-table-checkbox-${row.employeeNo}`;
+								return (
+									<TableRow
+										key={row.employeeNo}
+										aria-checked={isItemSelected}
+										tabIndex={-1}
+										selected={isItemSelected}
+									>
+										<TableCell padding='checkbox'>
+											<Checkbox
+												checked={isItemSelected}
+												onChange={(event) => handleClick(event, row.name)}
+												inputProps={{ 'aria-labelledby': labelId }}
+											/>
+										</TableCell>
+										<TableCell padding='none' align='center'>
+											{row.employeeNo}
+										</TableCell>
+										<TableCell align='center' scope='row'>
+											{row.name}
+										</TableCell>
+										<TableCell align='center'>{row.phoneNo}</TableCell>
+										<TableCell align='center'>{row.role}</TableCell>
+										<TableCell align='center'>
+											<Box
+												borderRadius='20px'
+												bgcolor={isItemSelected ? 'white' : 'green.100'}
+												fontSize='13px'
+												padding='4px'
+												fontWeight='fontWeightMedium'
+												color='green.900'
+											>
+												{row.status}
+											</Box>
+										</TableCell>
+										<TableCell align='center'>
+											<DotMenu fontSize='small' />
+										</TableCell>
+									</TableRow>
+								);
+							})}
+						</TableBody>
+					</Table>
+				</TableContainer>
+			</>
+		</React.Suspense>
 	);
 }

@@ -144,8 +144,8 @@ export default function Setup({ setUpText }) {
 							</FormControl>
 						</Grid>
 						{formData.map((item) => (
-							<Grid item xs={6}>
-								<FormControl fullWidth required key={item.id}>
+							<Grid item xs={6} key={item.id}>
+								<FormControl fullWidth required>
 									<Box
 										marginBottom={1}
 										fontSize='12px'
